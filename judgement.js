@@ -23,24 +23,24 @@ let get_achievement = (x, y, z) => {
 }
 
 let get_pass_or_failure = (x, y, z) => {
-  let judge = "合格";
+  let result = "合格";
   [x, y, z].some (i => {
     if (i < 60) {
-      judge = "不合格";
+      result = "不合格";
       return true;
     }
   })
-  return judge;
+  return result;
 }
 
-let result = (score, judge) => {
-  return `あなたの成績は${score}です。${judge}です!`;
+let judgement = (x, y, z) => {
+  let achievement = get_achievement(x, y, z);
+  let pass_of_failure = get_pass_or_failure(x, y, z);
+  return `あなたの成績は${achievement}です。${pass_of_failure}です!`;
 }
 
 const japanease = 40;
 const math = 100;
 const science = 80;
-let score = get_achievement(japanease, math, science);
-let judge = get_pass_or_failure(japanease, math, science);
 
-console.log(result(score, judge));
+console.log(judgement(japanease, math, science));
